@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="result"
+            type="com.ayeshaazeema.tastee.models.Result" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_home"
+        onRecipeClickListener="@{result}"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_20dp">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cv_home_item"
+            android:layout_width="@dimen/_0dp"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="@dimen/_10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white">
+
+                <ImageView
+                    android:id="@+id/iv_home_item"
+                    loadImageFromUrl="@{result.image}"
+                    android:layout_width="@dimen/_145dp"
+                    android:layout_height="@dimen/_175dp"
+                    android:contentDescription="@string/imageview"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:srcCompat="@drawable/ic_image" />
+
+                <TextView
+                    android:id="@+id/tv_home_item_title"
+                    android:layout_width="@dimen/_0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10dp"
+                    android:layout_marginTop="@dimen/_10dp"
+                    android:layout_marginEnd="@dimen/_10dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="@{result.title}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@id/iv_home_item"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_home_item_summary"
+                    parseHtml="@{result.summary}"
+                    android:layout_width="@dimen/_0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5dp"
+                    android:ellipsize="end"
+                    android:maxLines="3"
+                    android:textColor="@color/dark_gray"
+                    app:layout_constraintEnd_toEndOf="@id/tv_home_item_title"
+                    app:layout_constraintStart_toStartOf="@id/tv_home_item_title"
+                    app:layout_constraintTop_toBottomOf="@id/tv_home_item_title" />
+
+                <ImageView
+                    android:id="@+id/iv_home_item_like"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10dp"
+                    android:contentDescription="@string/imageview"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_home_item_like"
+                    app:layout_constraintStart_toStartOf="@+id/tv_home_item_like"
+                    app:layout_constraintTop_toBottomOf="@id/tv_home_item_summary"
+                    app:srcCompat="@drawable/ic_heart"
+                    app:tint="@color/main" />
+
+                <TextView
+                    android:id="@+id/tv_home_item_like"
+                    setNumberOfLikes="@{result.aggregateLikes}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:text="@string/like"
+                    app:layout_constraintStart_toEndOf="@+id/iv_home_item"
+                    app:layout_constraintTop_toBottomOf="@+id/iv_home_item_like" />
+
+                <ImageView
+                    android:id="@+id/iv_home_item_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:contentDescription="@string/imageview"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_home_item_time"
+                    app:layout_constraintStart_toStartOf="@+id/tv_home_item_time"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_home_item_summary"
+                    app:srcCompat="@drawable/ic_time" />
+
+                <TextView
+                    android:id="@+id/tv_home_item_time"
+                    setNumberOfMinutes="@{result.readyInMinutes}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:text="@string/time"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_home_item_like"
+                    app:layout_constraintStart_toEndOf="@+id/tv_home_item_like"
+                    app:layout_constraintTop_toBottomOf="@+id/iv_home_item_time"
+                    app:layout_constraintVertical_bias="1.0" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
